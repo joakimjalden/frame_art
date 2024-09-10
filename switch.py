@@ -1,28 +1,16 @@
-from samsungtvws import SamsungTVWS
 import logging
 from typing import Any
 
-from homeassistant.core import HomeAssistant
-from homeassistant.helpers.entity_platform import AddEntitiesCallback
-from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
-
-import voluptuous as vol
-
-from homeassistant.components.switch import (
-    ENTITY_ID_FORMAT,
-    PLATFORM_SCHEMA,
-    SwitchEntity,
-)
-from homeassistant.const import (
-    CONF_NAME,
-    CONF_RESOURCE,
-    CONF_SWITCHES,
-    CONF_TIMEOUT,
- )
-from homeassistant.core import HomeAssistant
 import homeassistant.helpers.config_validation as cv
+import voluptuous as vol
+from homeassistant.components.switch import (ENTITY_ID_FORMAT, PLATFORM_SCHEMA,
+                                             SwitchEntity)
+from homeassistant.const import (CONF_NAME, CONF_RESOURCE, CONF_SWITCHES,
+                                 CONF_TIMEOUT)
+from homeassistant.core import HomeAssistant
 from homeassistant.helpers.entity_platform import AddEntitiesCallback
 from homeassistant.helpers.typing import ConfigType, DiscoveryInfoType
+from samsungtvws import SamsungTVWS
 
 _LOGGER = logging.getLogger(__name__)
 
