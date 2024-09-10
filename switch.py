@@ -84,35 +84,32 @@ class ArtSwitch(SwitchEntity):
         self._timeout = timeout
         self._tv = SamsungTVWS(self._resource, timeout=self._timeout)
 
-    @property
-    def is_on(self):
-        """If the switch is currently on or off."""
-        return self._is_on
-
     def turn_on(self, **kwargs):
         """Turn the switch on."""
         try:
             self._tv.art().set_artmode('on')
-            self._is_on = True
+            self._attr_is_on = True
+            self._attr_available = True
         except:
-            self._is_on = False
-        self.schedule_update_ha_state()
+            self._attr_available = False
 
     def turn_off(self, **kwargs):
         """Turn the switch off."""
         try:
             self._tv.art().set_artmode('off')
+            self._attr_is_on = False
+            self._attr_available = True
         except:
-            self._is_on = False
-        self.schedule_update_ha_state()
+            self._attr_available = False
 
     def update(self):
         """Update the switch status."""
         try:
             info = self._tv.art().get_artmode()
             if info == 'on':
-                self._is_on = True
+                self._attr_is_on = True
             else:
-                self._is_on = False
+                self._attr_is_on = False
+            self._attr_available = True
         except:
-            self._is_on = False
+            self._attr_available = False
