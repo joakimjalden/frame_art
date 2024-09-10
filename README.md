@@ -6,15 +6,17 @@ This bare-bones custom Home Assistant (HA) component controls art mode on (newer
 
 ### Installation
 
-The integration can be installed by copying the files to `/config/custom_components/frame_art`  and adding something similar to your `configurations.yaml`,
+The integration can be installed by copying the files to `/config/custom_components/frame_art`  and adding something similar to your `configuration.yaml`,
 
 ```
 switch:
   - platform: frame_art
     switches:
       my_tv_art_mode:
+        name: "My TV art switch"
         resource: 192.168.xxx.xxx
 ```
+The `switches:`, `identifier:` (Name of the switch as a slug, where multiple entries are possible), and `resource` (TV ip-adress) options are mandatory, while the (friendly) `name:` is optional. You can also use `timeout:` (in seconds) to specify how long the TV has after an API call to answer before the switch is declared unavailable. The default is 5s.
 
 ### How it works or is intended to work
 
