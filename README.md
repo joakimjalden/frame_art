@@ -18,7 +18,7 @@ switch:
 
 ### How it works or is intended to work
 
-When the TV is on, the switch can be used to turn art mode for the TV on and off. When the TV is powered off or in standby mode (black screen), it does not respond to requests through the art mode API, so the switch is stuck at off, although maybe an unavailable state would have been more logical. Any reasonable use of automation will also have to test whether the TV is on, which can be done through the standard Samsung TV integration. I have tested the integration on my 55in The Frame (2022) with Firmware 1640. Feedback on if it works with other models is appreciated.
+When the TV is on, the switch can be used to turn art mode for the TV on and off. The switch becomes unavailable when the TV is in standby mode (powered off). A HA automation will thus typically have to test whether the TV is on, which can be done through the standard Samsung TV integration. I have tested the integration on my 55in The Frame (2022) with Firmware 1640. Feedback on if it works with other models is appreciated.
 
 ## Why not implement directly in the Samsung TV integration?
 
