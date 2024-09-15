@@ -1,7 +1,7 @@
 {
   "domain": "frame_art",
   "name": "Samsung The Frame Art Switch",
-  "codeowners": [],
+  "codeowners": [oakimjalden],
   "dependencies": [],
   "iot_class": "local_polling",
   "requirements": [ "samsungtvws[async,encrypted]==2.6.0" ],
