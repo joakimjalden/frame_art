@@ -6,7 +6,7 @@ This bare-bones custom Home Assistant (HA) component controls art mode on (newer
 
 ### Installation
 
-The integration can be installed by copying the files to `/config/custom_components/frame_art`  and adding something similar to your `configuration.yaml`,
+The integration can be installed by copying the files to `/<config-directory>/custom_components/frame_art`  and adding something similar to your `configuration.yaml`,
 
 ```
 switch:
@@ -16,11 +16,22 @@ switch:
         name: "My TV art switch"
         resource: 192.168.xxx.xxx
 ```
-The `switches:`, `identifier:` (Name of the switch as a slug, where multiple entries are possible), and `resource` (TV ip-adress) options are mandatory, while the (friendly) `name:` is optional. You can also use `timeout:` (in seconds) to specify how long the TV has after an API call to answer before the switch is declared unavailable. The default is 5s.
+### Configuration parameters:
+---
+| Name | Optional | `Default` | Description |
+| :---- | :---- | :------- | :----------- |
+| switches | **N** | - | The array that contains all switches.|
+| identifier | **N** | - | Name of the switch as a slug (`my_tv_art_mode` above), where multiple entries are possible. |
+| resource | **N**| - | IP address of the TV.|
+| name | **Y** | `identifier` | Friendly name of the swicth.|
+| timeout | **Y** | `5` | Time (in seconds) the TV has to answer after an API call before the switch is declared unavailable. |
+---
 
 ### How it works or is intended to work
 
 When the TV is on, the switch can be used to turn art mode for the TV on and off. The switch becomes unavailable when the TV is in standby mode (powered off). A HA automation will thus typically have to test whether the TV is on, which can be done through the standard Samsung TV integration. I have tested the integration on my 55in The Frame (2022) with Firmware 1640. Feedback on if it works with other models is appreciated.
+
+
 
 ## Why not implement directly in the Samsung TV integration?
 
