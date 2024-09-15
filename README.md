@@ -6,7 +6,7 @@ This bare-bones custom Home Assistant (HA) component controls art mode on (newer
 
 ### Installation
 
-The integration can be installed by copying the files to `/<config-directory>/custom_components/frame_art`  and adding something similar to your `configuration.yaml`,
+The integration can be installed by copying the files to `/<config directory>/custom_components/frame_art`  and adding something similar to your `configuration.yaml`,
 
 ```
 switch:
