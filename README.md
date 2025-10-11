@@ -1,42 +1,23 @@
-# A Home Assistant Integration for Samsung The Frame Art Mode
+# Frame Art — Intégration Home Assistant (UI)
 
-### Background
+**Prérequis :** l’intégration **SamsungTV Smart (ollo69)** doit être installée et configurée (entité `media_player` disponible).
 
-This bare-bones custom Home Assistant (HA) component controls art mode on (newer) Samsung The Frame TVs. It is intended to be a proof of concept implementation until I can either contribute to the HA development or get traction for a similar feature request. It uses the `samsung-tv-ws-api` Python API, also used by the official `samsungtv` platform in HA. The Python API supports many more features than turning the art mode on and off, but since I could not get these to work, only the most basic switch feature was implemented.
+Intégration avec **Config Flow** :
+- ajoute automatiquement un **switch** pour activer/désactiver l’Art Mode,
+- quand le switch passe sur **OFF**, bascule sur l’entrée HDMI (libellé) puis le contexte **TV/HDMI** via **ha-samsungtv-smart**.
 
-### Notice
+## Installation
+1. Copiez `custom_components/frame_art` dans votre config Home Assistant.
+2. Redémarrez Home Assistant.
+3. Allez dans *Paramètres → Intégrations → Ajouter une intégration → Frame Art*.
 
-This integration uses the `art.py` functionality of `samsung-tv-ws-api`, which is not yet asynchronous. This means that this integration (and therefore also HA) will wait for a reply from the TV before continuing after a polling update. This means that it will degrade the performance of your HA instance once installed. Once the `art.py` functionality is provided in an asynchronous version (as many other parts of the API already is), I will update this repository accordingly.
+## Options
+- **Adresse TV (resource)** : IP/host utilisé par `samsungtvws` pour l’Art Mode.
+- **Entité Samsung TV** : `media_player` de l’intégration `ha-samsungtv-smart`.
+- **Source (HDMI)** : libellé tel que vu dans `source_list` (ex. `Home cinéma`).
+- **Contexte/App** : généralement `TV/HDMI`.
+- **Délais & retries** : pour fiabiliser la séquence OFF → HDMI.
 
-### Installation
-
-The integration can be installed by copying all the files to `/<config directory>/custom_components/frame_art`  and adding something similar to your `configuration.yaml`,
-
-```
-switch:
-  - platform: frame_art
-    switches:
-      my_tv_art_mode:
-        name: "My TV art switch"
-        resource: 192.168.xxx.xxx
-```
-### Configuration parameters:
----
-| Name | Optional | `Default` | Description |
-| :---- | :---- | :------- | :----------- |
-| switches | **N** | - | The array that contains all switches.|
-| identifier | **N** | - | Name of the switch as a slug (`my_tv_art_mode` above), where multiple entries are possible. |
-| resource | **N**| - | IP address of the TV.|
-| name | **Y** | `identifier` | Friendly name of the swicth.|
-| timeout | **Y** | `5` | Time (in seconds) the TV has to answer after an API call before the switch is declared unavailable. |
----
-
-### How it works or is intended to work
-
-When the TV is on, the switch can be used to turn art mode for the TV on and off. The switch becomes unavailable when the TV is in standby mode (powered off). A HA automation will thus typically have to test whether the TV is on, which can be done through the standard Samsung TV integration. I have tested the integration on my 55in The Frame (2022) with Firmware 1640. Feedback on if it works with other models is appreciated.
-
-
-
-## Why not implement directly in the Samsung TV integration?
-
-This would naturally be the way to go long term, especially given that both integrations rely on  `samsung-tv-ws-api` (at least for newer TVs), but my programming skills are not yet good enough to contribute with a PR. This may happen before a feature request is heard; maybe not.
+Remarques :
+- Séquence **source puis app** (retour terrain).
+- Fallback si `select_app` absent : `media_player.select_source(app_id)`.

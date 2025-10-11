@@ -1,0 +1,39 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Frame Art",
+        "description": "Contrôler l'Art Mode et basculer l'entrée via ha-samsungtv-smart. ⚠️ Prérequis : l’intégration 'SamsungTV Smart (ollo69)' doit être installée et l’entité media_player disponible.",
+        "data": {
+          "resource": "Adresse IP/host de la TV (Art Mode WebSocket)",
+          "media_player": "Entité Samsung TV (ha-samsungtv-smart)",
+          "name": "Nom du switch",
+          "source_off": "Source (HDMI) à sélectionner à l'arrêt",
+          "app_id": "Contexte/App (ex: TV/HDMI)",
+          "select_delay": "Délai entre actions (s)",
+          "retries": "Nombre de vérifications d'état",
+          "retry_sleep": "Temps entre vérifs (s)"
+        }
+      }
+    },
+    "abort": {
+      "already_configured": "Cette TV est déjà configurée."
+    },
+    "error": {}
+  },
+  "options": {
+    "step": {
+      "options": {
+        "title": "Options Frame Art",
+        "data": {
+          "media_player": "Entité Samsung TV",
+          "source_off": "Source (HDMI) à sélectionner",
+          "app_id": "Contexte/App (ex: TV/HDMI)",
+          "select_delay": "Délai entre actions (s)",
+          "retries": "Nombre de vérifications",
+          "retry_sleep": "Temps entre vérifs (s)"
+        }
+      }
+    }
+  }
+}
