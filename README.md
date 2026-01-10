@@ -6,7 +6,7 @@ This bare-bones custom Home Assistant (HA) component controls art mode on (newer
 
 ### Notice
 
-This integration uses the `art.py` functionality of `samsung-tv-ws-api`, which is not yet asynchronous. This means that this integration (and therefore also HA) will wait for a reply from the TV before continuing after a polling update. This means that it will degrade the performance of your HA instance once installed. Once the `art.py` functionality is provided in an asynchronous version (as many other parts of the API already is), I will update this repository accordingly.
+This integration uses the `art.py` functionality of `samsung-tv-ws-api`, which is not yet asynchronous. This means that this integration (and therefore also HA) will wait for a reply from the TV before continuing after a polling update. This means that it will degrade the performance of your HA instance once installed. Once the `art.py` functionality is provided in an asynchronous version (as many other parts of the API already is), I will update this repository accordingly. If this is an issue for you, then consider the fork by [jswent](https://github.com/jswent/frame_art).
 
 ### Installation
 
